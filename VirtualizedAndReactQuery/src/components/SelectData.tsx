@@ -1,31 +1,35 @@
-import React, { useState } from "react";
-
-import Characters from "./Characters";
-import PopularDishes from "./PopularDishes";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export const SelectData = () => {
-  const [paginationView, setPaginationView] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   return (
     <>
-      {paginationView ? <h1>Rick and Morty</h1> : <h1>Popular dishes</h1>}
-      <div>
+      <div className="buttons-wrapper">
         <button
           onClick={() => {
-            setPaginationView(false);
+            navigate("/popular");
+            return;
           }}
         >
-          React Virtualized - Popular Dishes
+          Popular Dishes
         </button>
         <button
           onClick={() => {
-            setPaginationView(true);
+            navigate("/");
           }}
         >
-          Pagination with ReactQuery - Rick&Morty
+          Rick&Morty
+        </button>
+        <button
+          onClick={() => {
+            navigate("/samplelist");
+          }}
+        >
+          Sample list
         </button>
       </div>
-      {paginationView ? <Characters /> : <PopularDishes />}
     </>
   );
 };

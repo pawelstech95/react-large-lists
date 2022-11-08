@@ -13,5 +13,6 @@ export const usePopularDishes = () => {
   return useQuery(queryKey, fetchPopularDishes, {
     refetchOnWindowFocus: false,
     staleTime: 300000,
+    cacheTime: 1000 * 60 * 60,
   });
 };

@@ -6,7 +6,7 @@ export const useCharacters = (page: number) => {
   const fetchCharacters: ({
     queryKey,
   }: {
-    queryKey: any;
+    queryKey: (string | number)[];
   }) => Promise<CharactersTs> = async ({ queryKey }) => {
     const response = await fetch(
       `https://rickandmortyapi.com/api/character?page=${queryKey[1]}`
@@ -18,5 +18,6 @@ export const useCharacters = (page: number) => {
     keepPreviousData: true,
     refetchOnWindowFocus: false,
     staleTime: 300000,
+    cacheTime: 1000 * 60 * 60,
   });
 };

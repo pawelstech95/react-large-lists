@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Result } from "../api/characters";
 
 interface Props {

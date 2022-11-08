@@ -10,36 +10,43 @@ const Characters = () => {
 
   const { data, isPreviousData, status } = useCharacters(page);
 
-  const cards = data?.results.map((character: Result) => {
+  const mutatedData = React.useMemo(() => {
+    return data;
+  }, [data]);
+
+  const cards = mutatedData?.results.map((character: Result) => {
     return <Character character={character} key={character.id} />;
   });
 
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return <div className="loading">Loading...</div>;
   }
 
   if (status === "error") {
-    return <div>Error...</div>;
+    return <div className="error">Error...</div>;
   }
 
   return (
-    <div className="content">
-      {cards}
-      <div>
-        <button
-          disabled={!isPreviousData && page === 1}
-          onClick={() => setPage((old: number) => old - 1)}
-        >
-          Previous
-        </button>
-        <button
-          disabled={!isPreviousData && data?.info.next === null}
-          onClick={() => setPage((old: number) => old + 1)}
-        >
-          Next
-        </button>
+    <>
+      <h1>Rick and Morty</h1>
+      <div className="content">
+        {cards}
+        <div>
+          <button
+            disabled={!isPreviousData && page === 1}
+            onClick={() => setPage((old: number) => old - 1)}
+          >
+            Previous
+          </button>
+          <button
+            disabled={!isPreviousData && mutatedData?.info.next === null}
+            onClick={() => setPage((old: number) => old + 1)}
+          >
+            Next
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

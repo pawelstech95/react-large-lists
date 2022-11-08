@@ -1,37 +1,28 @@
-import React from "react";
-import { List } from "react-virtualized";
+import React, { useMemo } from "react";
 
 import { usePopularDishes } from "../hooks/usePopularDishes";
-import Popular from "./Popular";
+import { PopularDishesList } from "./PopularDishesList";
 
 const PopularDishes = () => {
   const { data, status } = usePopularDishes();
-  const popular = data?.recipes.map((recipe, index) => {
-    return <Popular recipe={recipe} key={recipe.id} index={index} />;
-  });
+
+  const mutatedData = useMemo(() => {
+    return data;
+  }, [data]);
 
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return <div className="loading">Loading...</div>;
   }
   if (status === "error") {
-    return <div>Error...</div>;
+    return <div className="error">Error...</div>;
   }
 
   return (
     <>
-      {data && (
-        // @ts-ignore
-        <List
-          width={window.innerWidth} // @todo rewrite it
-          height={window.innerHeight} // @todo rewrite it
-          rowRenderer={() => popular}
-          rowCount={data.recipes.length}
-          rowHeight={200}
-          containerStyle={{
-            overflowY: "auto",
-          }}
-          scrollToIndex={100}
-        />
+      {mutatedData && (
+        <div style={{ width: "100%", height: "100vh" }}>
+          <PopularDishesList data={mutatedData} />
+        </div>
       )}
     </>
   );
