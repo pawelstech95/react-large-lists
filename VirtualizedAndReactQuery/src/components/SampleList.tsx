@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import { faker } from "@faker-js/faker";
 import {
   AutoSizer as _AutoSizer,
@@ -10,7 +10,7 @@ import {
 const List = _List as unknown as FC<ListProps>;
 const AutoSizer = _AutoSizer as unknown as FC<AutoSizerProps>;
 
-export const SampleList = () => {
+const SampleList = () => {
   const data = React.useMemo(
     () =>
       new Array(10000).fill({}).map((value, id) => ({
@@ -53,3 +53,4 @@ export const SampleList = () => {
     </div>
   );
 };
+export default memo(SampleList);

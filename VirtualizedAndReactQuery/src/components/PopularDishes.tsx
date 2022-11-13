@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { memo, useMemo } from "react";
 
 import { usePopularDishes } from "../hooks/usePopularDishes";
 import { PopularDishesList } from "./PopularDishesList";
@@ -28,4 +28,4 @@ const PopularDishes = () => {
   );
 };
 
-export default PopularDishes;
+export default memo(PopularDishes);

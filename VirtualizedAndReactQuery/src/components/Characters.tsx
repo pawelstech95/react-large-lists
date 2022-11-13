@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 
 import { Result } from "../api/characters";
 
@@ -50,4 +50,4 @@ const Characters = () => {
   );
 };
 
-export default Characters;
+export default memo(Characters);

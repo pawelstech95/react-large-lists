@@ -5,7 +5,7 @@ import { SelectData } from "./SelectData";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Characters from "./Characters";
 import PopularDishes from "./PopularDishes";
-import { SampleList } from "./SampleList";
+import SampleList from "./SampleList";
 
 const queryClient = new QueryClient();
 
